@@ -256,9 +256,8 @@ ul {
   width: var(--view-width);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: rem 2rem;
+  padding: 1rem 2rem;
 }
 .active {
-  color: var(--primary-500);
-  font-weight: 700;
+  color: var(--red);
 }

@@ -1,6 +1,6 @@
 import styles from './Register.module.css'
 import { Form, redirect, useNavigation } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
+
 import { toast } from 'react-toastify'
 
 export const action = async ({ request }) => {
@@ -32,12 +32,10 @@ export const action = async ({ request }) => {
 }
 
 const Register = () => {
-  const { loginWithRedirect, isAuthenticated, logout, user, isLoading } =
-    useAuth0()
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Form className='form' method='POST'>
         <h4 className={styles.heading}>Register Here</h4>
         <div className='form-row'>
