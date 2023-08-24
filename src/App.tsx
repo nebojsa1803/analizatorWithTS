@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Home, Login, Register, Landing, Error } from './pages'
-import { action as registerAction } from './pages/Register/Register'
-import { action as loginAction } from './pages/Login/Login'
+import { action as registerAction } from './pages/Register/actions'
+import { action as loginAction } from './pages/Login/actions'
 
 const router = createBrowserRouter([
   {
