@@ -3,27 +3,6 @@ import { Form, redirect, useNavigation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Input from '../../components/Input'
 
-// export const action = async ({ request }) => {
-//   const formData = await request.formData()
-//   const data = Object.fromEntries(formData)
-
-//   const { email, password } = data
-//   //checking input values
-//   if (!email || !password) {
-//     toast.error('Please provide all values.')
-//     return null
-//   }
-//   if (!email.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/)) {
-//     toast.error('Please provide valid email address.')
-//     return null
-//   }
-
-//   //if everything is ok
-//   toast.success('Hello User')
-//   console.log(data)
-//   return redirect('/')
-// }
-
 const Login = () => {
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
