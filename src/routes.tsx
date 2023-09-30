@@ -1,5 +1,13 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home, Login, Register, Landing, Error } from './pages'
+import {
+  Home,
+  Login,
+  Register,
+  Landing,
+  Error,
+  ProtectedRoute,
+  Dashboard,
+} from './pages'
 import { action as registerAction } from './domain/auth/RegisterForm'
 import { action as loginAction } from './domain/auth/LoginForm'
 
@@ -24,5 +32,13 @@ export const router = createBrowserRouter([
         action: registerAction,
       },
     ],
+  },
+  {
+    path: 'dashboard',
+    element: (
+      <ProtectedRoute>
+        <Dashboard />
+      </ProtectedRoute>
+    ),
   },
 ])

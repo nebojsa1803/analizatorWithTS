@@ -1,18 +1,23 @@
-import { useNavigation, Form } from 'react-router-dom'
+import { useNavigation, Form, ActionFunctionArgs } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { redirect } from 'react-router-dom'
 import Input from '../../components/Input/Input'
 import styles from './../../pages/Register/Register.module.css'
+import { addDataToLocalStorage, getDataFromLocalStorage } from '../../functions'
 
 // what register form needs to do
-export const action = async ({ request }) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   //always must return somthing, even null
 
   console.log(request)
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
+  const firstName = formData.get('firstName')?.toString()
+  const lastName = formData.get('lastName')?.toString()
+  const email = formData.get('email')?.toString()
+  const password = formData.get('password')?.toString()
+  const repeatPassword = formData.get('repeatPassword')?.toString()
 
-  const { firstName, lastName, email, password, repeatPassword } = data
   //checking input values
   if (!firstName || !lastName || !email || !password || !repeatPassword) {
     toast.error('Please provide all values.')
@@ -33,13 +38,16 @@ export const action = async ({ request }) => {
   //if everything is ok
   //later this must insert user in database
   toast.success('Hello. You are successfully registred.')
-  console.log(data)
-  return redirect('/')
+  const dataFromStorage = getDataFromLocalStorage('users')
+  dataFromStorage.push(data)
+  addDataToLocalStorage('users', dataFromStorage)
+  return redirect('/dashboard')
 }
 
 const RegisterForm = () => {
   const navigation = useNavigation()
   const isSubmitting = navigation.state === 'submitting'
+
   return (
     <Form className='form' method='POST'>
       <h4 className={styles.heading}>Register Here</h4>
