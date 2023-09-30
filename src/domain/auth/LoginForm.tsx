@@ -4,7 +4,11 @@ import { toast } from 'react-toastify'
 import Input from '../../components/Input/Input'
 import styles from './../../pages/Login/Login.module.css'
 import { getDataFromLocalStorage } from '../../functions'
-import { logUserIn, loggedUserData } from '../../feature/users/usersSlice'
+import {
+  logUserIn,
+  logUserOut,
+  loggedUserData,
+} from '../../feature/users/usersSlice'
 import { store } from '../../store'
 
 type User = {
@@ -16,6 +20,9 @@ type User = {
 }
 
 export const action = async ({ request }: ActionFunctionArgs) => {
+  //when log in start, previous user must be log out
+  store.dispatch(logUserOut())
+
   const users = getDataFromLocalStorage('users')
   // what register form needs to do
   const formData = await request.formData()

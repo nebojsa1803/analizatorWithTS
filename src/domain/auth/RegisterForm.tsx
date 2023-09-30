@@ -9,7 +9,6 @@ import { addDataToLocalStorage, getDataFromLocalStorage } from '../../functions'
 export const action = async ({ request }: ActionFunctionArgs) => {
   //always must return somthing, even null
 
-  console.log(request)
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
   const firstName = formData.get('firstName')?.toString()
@@ -37,11 +36,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   }
   //if everything is ok
   //later this must insert user in database
-  toast.success('Hello. You are successfully registred.')
+  toast.success('You are successfully registred.')
   const dataFromStorage = getDataFromLocalStorage('users')
   dataFromStorage.push(data)
   addDataToLocalStorage('users', dataFromStorage)
-  return redirect('/dashboard')
+  return redirect('/login')
 }
 
 const RegisterForm = () => {
