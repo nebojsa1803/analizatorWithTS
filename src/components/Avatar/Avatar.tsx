@@ -7,7 +7,7 @@ type AvatarProp = {
 const Avatar = ({ firstNameInitial }: AvatarProp) => {
   return (
     <div className={styles.box}>
-      <h2>{firstNameInitial}</h2>
+      <h3>{firstNameInitial}</h3>
     </div>
   )
 }
